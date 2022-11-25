@@ -90,16 +90,13 @@ public class Main {
         busFour.endMoving();
 
 
-        DriverCatB<Car> carDriverCatB = new DriverCatB<Car>("Петя",5, audi);
-        DriverCatD<Bus> busDriverCatD = new DriverCatD<Bus>("Вася", 20, busOne);
-        DriverCatC<Trucks> truckDriverCatC = new DriverCatC<Trucks>("Иван", 2, volvo);
+        DriverCatB carDriverCatB = new DriverCatB("Петя",5, audi);
+        DriverCatD busDriverCatD = new DriverCatD("Вася", 20, busOne);
+        DriverCatC truckDriverCatC = new DriverCatC("Иван", 2, volvo);
 
-        System.out.println("Водитель " + carDriverCatB.getName() + " управляет автомобилем " +
-                            carDriverCatB.getCar() + " и будет участвовать в заезде");
-        System.out.println("Водитель " + busDriverCatD.getName() + " управляет автомобилем " +
-                            busDriverCatD.getBus() + " и будет участвовать в заезде");
-        System.out.println("Водитель " + truckDriverCatC.getName() + " управляет автомобилем " +
-                            truckDriverCatC.getTruck() + " и будет участвовать в заезде");
+        System.out.println(carDriverCatB);
+        System.out.println(busDriverCatD);
+        System.out.println(truckDriverCatC);
 
 
 
