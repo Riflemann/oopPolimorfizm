@@ -49,5 +49,15 @@ public class Main {
         busOne.printType();
         volvo.printType();
         reno.printType();
+
+        try {
+            carDriverCatB.diagnostic();
+            busDriverCatD.diagnostic();
+            truckDriverCatC.diagnostic();
+            carDriverCatB.setCategory("");
+            carDriverCatB.diagnostic();
+        } catch (WrongTypeLicence e) {
+            throw new RuntimeException(e);
+        }
     }
 }
