@@ -1,9 +1,12 @@
 package Transport;
 
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public abstract class Driver <T extends Transport> {
     private final String fullName;
-    private final String category;
+    private String category;
     private final int drivingExperience;
     private final T car;
 
@@ -25,6 +28,10 @@ public abstract class Driver <T extends Transport> {
         return drivingExperience;
     }
 
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     public void startDriving() {
         System.out.printf("Водитель %s начал двигаться", this.fullName);
         this.car.startMoving();
@@ -38,6 +45,15 @@ public abstract class Driver <T extends Transport> {
     public void refill() {
         System.out.printf("Водитель %s заправляет  %s %s",
                 this.fullName, this.car.getBrand(), this.car.getModel());
+    }
+    public void diagnostic() throws WrongTypeLicence {
+        Pattern pattern = Pattern.compile("[BCD]");
+        Matcher matcher = pattern.matcher(this.category);
+        if (matcher.matches()) {
+            System.out.println("Проверка пройдена");
+        } else {
+            throw new WrongTypeLicence("Необходимо указать тип прав!");
+        }
     }
 
     @Override

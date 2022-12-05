@@ -2,104 +2,62 @@ import Transport.*;
 
 public class Main {
     public static void main(String[] args) {
-        Car lada = new Car("Lada ", " Granta ", 1.7);
-        Car audi = new Car("Audi ", " A8 ", 3.0);
-        Car bmw = new Car("BMW ", " Z8 ", 3.0);
-        Car kia = new Car("KIA ", " Sportage ", 2.4);
+        Car lada = new Car("Lada ", " Granta ", 1.7, Car.BodyType.SEDAN);
+        Car audi = new Car("Audi ", " A8 ", 3.0, Car.BodyType.COUPE);
+        Car bmw = new Car("BMW ", " Z8 ", 3.0, Car.BodyType.COUPE);
+        Car kia = new Car("KIA ", " Sportage ", 2.4, Car.BodyType.CROSSOVER);
 
-        Trucks kamaz = new Trucks("Kamaz ", " A-1 ", 5.5);
-        Trucks man = new Trucks("Man ", " B-2 ", 4.5);
-        Trucks volvo = new Trucks("Volvo ", " C-3 ", 5.0);
-        Trucks reno = new Trucks("Reno ", " D-4 ", 3.5);
+        Trucks kamaz = new Trucks("Kamaz ", " A-1 ", 5.5,
+                Trucks.LoadCapacity.N3);
+        Trucks man = new Trucks("Man ", " B-2 ", 4.5,
+                Trucks.LoadCapacity.N2_DOWN_BOUND, Trucks.LoadCapacity.N2_UPPER_BOUND);
+        Trucks volvo = new Trucks("Volvo ", " C-3 ", 5.0,
+                Trucks.LoadCapacity.N1);
+        Trucks reno = new Trucks("Reno ", " D-4 ", 3.5,
+                Trucks.LoadCapacity.N3);
 
-        Bus busOne = new Bus("busOne ", " A1 ", 3.0);
-        Bus busTwo = new Bus("busTwo ", " A2 ", 3.0);
-        Bus busThree = new Bus("busThree ", " A3 ", 2.4);
-        Bus busFour = new Bus("busFour ", " A4 ", 2.5);
-
-        lada.startMoving();
-        lada.maxSpeed();
-        lada.bestLapTime();
-        lada.pitStop();
-        lada.endMoving();
-
-        audi.startMoving();
-        audi.maxSpeed();
-        audi.bestLapTime();
-        audi.pitStop();
-        audi.endMoving();
-
-        bmw.startMoving();
-        bmw.maxSpeed();
-        bmw.bestLapTime();
-        bmw.pitStop();
-        bmw.endMoving();
-
-        kia.startMoving();
-        kia.maxSpeed();
-        kia.bestLapTime();
-        kia.pitStop();
-        kia.endMoving();
-
-        kamaz.startMoving();
-        kamaz.maxSpeed();
-        kamaz.bestLapTime();
-        kamaz.pitStop();
-        kamaz.endMoving();
-
-        man.startMoving();
-        man.maxSpeed();
-        man.bestLapTime();
-        man.pitStop();
-        man.endMoving();
-
-        volvo.startMoving();
-        volvo.maxSpeed();
-        volvo.bestLapTime();
-        volvo.pitStop();
-        volvo.endMoving();
-
-        reno.startMoving();
-        reno.maxSpeed();
-        reno.bestLapTime();
-        reno.pitStop();
-        reno.endMoving();
-
-        busOne.startMoving();
-        busOne.maxSpeed();
-        busOne.bestLapTime();
-        busOne.pitStop();
-        busOne.endMoving();
-
-        busTwo.startMoving();
-        busTwo.maxSpeed();
-        busTwo.bestLapTime();
-        busTwo.pitStop();
-        busTwo.endMoving();
-
-        busThree.startMoving();
-        busThree.maxSpeed();
-        busThree.bestLapTime();
-        busThree.pitStop();
-        busThree.endMoving();
-
-        busFour.startMoving();
-        busFour.maxSpeed();
-        busFour.bestLapTime();
-        busFour.pitStop();
-        busFour.endMoving();
+        Bus busOne = new Bus("busOne ", " A1 ", 3.0,
+                Bus.CapacityType.EXTRA_SMALL);
+        Bus busTwo = new Bus("busTwo ", " A2 ", 3.0,
+                Bus.CapacityType.MEDIUM_DOWN_BOUND, Bus.CapacityType.MEDIUM_UPPER_BOUND);
+        Bus busThree = new Bus("busThree ", " A3 ", 2.4,
+                Bus.CapacityType.LARGE_DOWN_BOUND, Bus.CapacityType.LARGE_UPPER_BOUND);
+        Bus busFour = new Bus("busFour ", " A4 ", 2.5,
+                Bus.CapacityType.ESPECIALLY_LARGE_DOWN_BOUND, Bus.CapacityType.ESPECIALLY_LARGE_UPPER_BOUND);
 
 
         DriverCatB carDriverCatB = new DriverCatB("Петя",5, audi);
         DriverCatD busDriverCatD = new DriverCatD("Вася", 20, busOne);
         DriverCatC truckDriverCatC = new DriverCatC("Иван", 2, volvo);
 
-        System.out.println(carDriverCatB);
-        System.out.println(busDriverCatD);
-        System.out.println(truckDriverCatC);
 
+        System.out.println(audi);
+        System.out.println(lada);
 
+        System.out.println(kamaz);
+        System.out.println(man);
 
+        System.out.println(busOne);
+        System.out.println(busTwo);
+        System.out.println(busThree);
+        System.out.println(busFour);
 
+        audi.setTransportType(TransportType.CAR);
+        busOne.setTransportType(TransportType.BUS);
+        volvo.setTransportType(TransportType.TRUCK);
+        audi.printType();
+        busOne.printType();
+        volvo.printType();
+        reno.printType();
+
+        try {
+            carDriverCatB.diagnostic();
+            busDriverCatD.diagnostic();
+            truckDriverCatC.diagnostic();
+            carDriverCatB.setCategory("");
+            carDriverCatB.diagnostic();
+        } catch (WrongTypeLicence e) {
+            throw new RuntimeException(e);
+        }
     }
 }
