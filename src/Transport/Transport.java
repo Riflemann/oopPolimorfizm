@@ -1,22 +1,24 @@
 package Transport;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public abstract class Transport {
     private String brand;
     private String model;
     private double engineVolume;
 
-    ArrayList<Sponsor> sponsorArrayList;
+    Set<Sponsor> sponsorList;
 
-    ArrayList<Mechanic> mechanicArrayList;
+    Set<Mechanic> mechanicList;
 
     public Transport(String brand, String model, double engine) {
         this.brand = ValidateUtil.validateString(brand);
         this.model = ValidateUtil.validateString(model);
         this.engineVolume = engine;
-        this.mechanicArrayList = new ArrayList<>();
-        this.sponsorArrayList = new ArrayList<>();
+        this.mechanicList = new HashSet<>();
+        this.sponsorList = new HashSet<>();
 
     }
 
@@ -38,12 +40,12 @@ public abstract class Transport {
 
     public abstract void printType();
 
-    public ArrayList<Sponsor> getSponsorArrayList() {
-        return sponsorArrayList;
+    public Set<Sponsor> getSponsorList() {
+        return sponsorList;
     }
 
-    public ArrayList<Mechanic> getMechanicArrayList() {
-        return mechanicArrayList;
+    public Set<Mechanic> getMechanicList() {
+        return mechanicList;
     }
 
 }

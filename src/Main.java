@@ -63,15 +63,15 @@ public class Main {
         Mechanic mechanicSeven =new Mechanic("Механик 7", "Копания 3", TransportType.CAR);
         Mechanic mechanicEight =new Mechanic("Механик 8", "Копания 4", TransportType.BUS);
 
-        lada.getMechanicArrayList().add(mechanicOne);
-        lada.getMechanicArrayList().add(mechanicTwo);
-        lada.getMechanicArrayList().add(mechanicThree);
-        bmw.getMechanicArrayList().add(mechanicThree);
-        bmw.getMechanicArrayList().add(mechanicFour);
-        bmw.getMechanicArrayList().add(mechanicFife);
-        bmw.getMechanicArrayList().add(mechanicSix);
-        volvo.getMechanicArrayList().add(mechanicSeven);
-        volvo.getMechanicArrayList().add(mechanicEight);
+        lada.getMechanicList().add(mechanicOne);
+        lada.getMechanicList().add(mechanicTwo);
+        lada.getMechanicList().add(mechanicThree);
+        bmw.getMechanicList().add(mechanicThree);
+        bmw.getMechanicList().add(mechanicFour);
+        bmw.getMechanicList().add(mechanicFife);
+        bmw.getMechanicList().add(mechanicSix);
+        volvo.getMechanicList().add(mechanicSeven);
+        volvo.getMechanicList().add(mechanicEight);
 
         Sponsor sponsorOne = new Sponsor("Спонсор 1", 10_000_000);
         Sponsor sponsorTwo = new Sponsor("Спонсор 2", 10_000_000);
@@ -80,19 +80,19 @@ public class Main {
         Sponsor sponsorFife = new Sponsor("Спонсор 5", 10_000_000);
         Sponsor sponsorSix = new Sponsor("Спонсор 6", 10_000_000);
 
-        lada.getSponsorArrayList().add(sponsorOne);
-        lada.getSponsorArrayList().add(sponsorTwo);
-        bmw.getSponsorArrayList().add(sponsorThree);
-        volvo.getSponsorArrayList().add(sponsorFour);
-        kia.getSponsorArrayList().add(sponsorFife);
-        kamaz.getSponsorArrayList().add(sponsorSix);
+        lada.getSponsorList().add(sponsorOne);
+        lada.getSponsorList().add(sponsorTwo);
+        bmw.getSponsorList().add(sponsorThree);
+        volvo.getSponsorList().add(sponsorFour);
+        kia.getSponsorList().add(sponsorFife);
+        kamaz.getSponsorList().add(sponsorSix);
 
         for (Transport car :allTransports) {
-            if (car.getMechanicArrayList().size() != 0) {
-                System.out.println(car.getMechanicArrayList());
+            if (car.getMechanicList().size() != 0) {
+                System.out.println(car.getMechanicList());
             }
-            if (car.getSponsorArrayList().size() != 0) {
-                System.out.println(car.getSponsorArrayList());
+            if (car.getSponsorList().size() != 0) {
+                System.out.println(car.getSponsorList());
             }
         }
 
