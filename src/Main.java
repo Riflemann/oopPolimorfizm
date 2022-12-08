@@ -1,5 +1,7 @@
 import Transport.*;
 
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
         Car lada = new Car("Lada ", " Granta ", 1.7, Car.BodyType.SEDAN);
@@ -31,17 +33,6 @@ public class Main {
         DriverCatC truckDriverCatC = new DriverCatC("Иван", 2, volvo);
 
 
-        System.out.println(audi);
-        System.out.println(lada);
-
-        System.out.println(kamaz);
-        System.out.println(man);
-
-        System.out.println(busOne);
-        System.out.println(busTwo);
-        System.out.println(busThree);
-        System.out.println(busFour);
-
         audi.setTransportType(TransportType.CAR);
         busOne.setTransportType(TransportType.BUS);
         volvo.setTransportType(TransportType.TRUCK);
@@ -50,14 +41,69 @@ public class Main {
         volvo.printType();
         reno.printType();
 
-        try {
-            carDriverCatB.diagnostic();
-            busDriverCatD.diagnostic();
-            truckDriverCatC.diagnostic();
-            carDriverCatB.setCategory("");
-            carDriverCatB.diagnostic();
-        } catch (WrongTypeLicence e) {
-            throw new RuntimeException(e);
+
+        ArrayList<Transport> allTransports = new ArrayList<>();
+        allTransports.add(lada);
+        allTransports.add(audi);
+        allTransports.add(bmw);
+        allTransports.add(kia);
+        allTransports.add(kamaz);
+        allTransports.add(volvo);
+        allTransports.add(busOne);
+        allTransports.add(busTwo);
+        allTransports.add(busThree);
+        allTransports.add(busFour);
+
+        Mechanic mechanicOne = new Mechanic("Механик 1", "Копания 1", TransportType.CAR);
+        Mechanic mechanicTwo = new Mechanic("Механик 2", "Копания 1", TransportType.BUS);
+        Mechanic mechanicThree =new Mechanic("Механик 3", "Копания 1", TransportType.TRUCK);
+        Mechanic mechanicFour =new Mechanic("Механик 4", "Копания 2", TransportType.CAR);
+        Mechanic mechanicFife =new Mechanic("Механик 5", "Копания 2", TransportType.TRUCK);
+        Mechanic mechanicSix = new Mechanic("Механик 6", "Копания 3", TransportType.BUS);
+        Mechanic mechanicSeven =new Mechanic("Механик 7", "Копания 3", TransportType.CAR);
+        Mechanic mechanicEight =new Mechanic("Механик 8", "Копания 4", TransportType.BUS);
+
+        lada.getMechanicArrayList().add(mechanicOne);
+        lada.getMechanicArrayList().add(mechanicTwo);
+        lada.getMechanicArrayList().add(mechanicThree);
+        bmw.getMechanicArrayList().add(mechanicThree);
+        bmw.getMechanicArrayList().add(mechanicFour);
+        bmw.getMechanicArrayList().add(mechanicFife);
+        bmw.getMechanicArrayList().add(mechanicSix);
+        volvo.getMechanicArrayList().add(mechanicSeven);
+        volvo.getMechanicArrayList().add(mechanicEight);
+
+        Sponsor sponsorOne = new Sponsor("Спонсор 1", 10_000_000);
+        Sponsor sponsorTwo = new Sponsor("Спонсор 2", 10_000_000);
+        Sponsor sponsorThree = new Sponsor("Спонсор 3", 10_000_000);
+        Sponsor sponsorFour = new Sponsor("Спонсор 4", 10_000_000);
+        Sponsor sponsorFife = new Sponsor("Спонсор 5", 10_000_000);
+        Sponsor sponsorSix = new Sponsor("Спонсор 6", 10_000_000);
+
+        lada.getSponsorArrayList().add(sponsorOne);
+        lada.getSponsorArrayList().add(sponsorTwo);
+        bmw.getSponsorArrayList().add(sponsorThree);
+        volvo.getSponsorArrayList().add(sponsorFour);
+        kia.getSponsorArrayList().add(sponsorFife);
+        kamaz.getSponsorArrayList().add(sponsorSix);
+
+        for (Transport car :allTransports) {
+            if (car.getMechanicArrayList().size() != 0) {
+                System.out.println(car.getMechanicArrayList());
+            }
+            if (car.getSponsorArrayList().size() != 0) {
+                System.out.println(car.getSponsorArrayList());
+            }
         }
+
+        ServiceStation<Transport> transportServiceStation = new ServiceStation<Transport>();
+        transportServiceStation.addTransport(audi);
+        transportServiceStation.addTransport(volvo);
+        transportServiceStation.addTransport(kamaz);
+        transportServiceStation.addTransport(busOne);
+        transportServiceStation.addTransport(bmw);
+
+        transportServiceStation.maintenance();
+
     }
 }
